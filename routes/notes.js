@@ -65,13 +65,12 @@ notesRouter.delete('/:notes_id', (req, res) => {
                 if (error) {
                     throw error
                 } else {
-                    console.log('successfully deleted note')
+                    console.log('successfully deleted note');
+                    res.send(`note id: ${noteId} deleted`);
                 }
             });
         }
     });
-
-    res.send(`note id: ${note_id} deleted`)
 });
 
 module.exports = notesRouter;
