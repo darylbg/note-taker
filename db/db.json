@@ -1,6 +1,1 @@
-[
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    }
-]
+[{"title":"note 02","text":"this is an example note","note_id":"0ca543f3-73ef-4c50-8df9-fae1a06a31b0"},{"title":"lunch 10/04","text":"lunch is 3 hours late","note_id":"543935fc-d74b-425a-959c-3c33b3620fbd"},{"title":"test note","text":"retest","note_id":"ae975efe-8389-473e-8ab2-7ebae05e9394"},{"title":"hi","text":"new note","note_id":"007b2bd7-df21-4814-8243-fb3b40e05f37"}]
