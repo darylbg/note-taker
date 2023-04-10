@@ -26,7 +26,7 @@ notesRouter.post('/', (req, res) => {
             if (error) {
                 throw error
             } else {
-                const notes = JSON.parse(data);
+                var notes = JSON.parse(data);
                 notes.push(note);
 
                 fs.writeFile('./db/db.json', JSON.stringify(notes), (error) => {
@@ -38,7 +38,6 @@ notesRouter.post('/', (req, res) => {
                 });
             }
         })
-
         const response = {
             status: 'success',
             body: note
@@ -52,7 +51,25 @@ notesRouter.post('/', (req, res) => {
 });
 
 notesRouter.delete('/:notes_id', (req, res) => {
-    const { note_id } = req.params;
+    const noteId = req.params.notes_id;
+
+    fs.readFile('./db/db.json', (error, data) => {
+        if (error) {
+            throw error;
+        } else {
+            var notes = JSON.parse(data);
+            
+            const updatedNotes = notes.filter((note) => note.note_id !== noteId);
+            console.info(updatedNotes);
+            fs.writeFile('./db/db.json', JSON.stringify(updatedNotes), (error) => {
+                if (error) {
+                    throw error
+                } else {
+                    console.log('successfully deleted note')
+                }
+            });
+        }
+    });
 
     res.send(`note id: ${note_id} deleted`)
 });
