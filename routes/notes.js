@@ -1,6 +1,10 @@
 const notesRouter = require('express').Router();
 const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
+const { customMiddleware } = require('../middleware/middleware');
+
+// Custom middleware
+notesRouter.use(customMiddleware);
 
 // GET route retrives all data from db.json
 notesRouter.get('/', (req, res) => {
