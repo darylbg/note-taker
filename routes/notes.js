@@ -19,7 +19,7 @@ notesRouter.post('/', (req, res) => {
         const note = {
             title,
             text,
-            note_id: uuidv4()
+            id: uuidv4()
         };
 
         fs.readFile('./db/db.json', (error, data) => {
@@ -50,8 +50,9 @@ notesRouter.post('/', (req, res) => {
 
 });
 
-notesRouter.delete('/:notes_id', (req, res) => {
-    const noteId = req.params.notes_id;
+notesRouter.delete('/:id', (req, res) => {
+    const noteId = req.params.id.toString();
+    console.info(noteId);
 
     fs.readFile('./db/db.json', (error, data) => {
         if (error) {
@@ -59,7 +60,7 @@ notesRouter.delete('/:notes_id', (req, res) => {
         } else {
             var notes = JSON.parse(data);
             
-            const updatedNotes = notes.filter((note) => note.note_id !== noteId);
+            const updatedNotes = notes.filter((note) => note.id !== noteId);
             console.info(updatedNotes);
             fs.writeFile('./db/db.json', JSON.stringify(updatedNotes), (error) => {
                 if (error) {
